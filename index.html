@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Sharon! ❤️</title>
+  <style>
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Arial',sans-serif; }
+    body, html { width:100%; height:100%; overflow:hidden; background:#ffe6f0; }
+
+    /* Overlay with hearts/flowers */
+    #overlay {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:#ffe6f0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      z-index:9999;
+      transition:opacity 1s ease;
+    }
+    .particle {
+      position:absolute;
+      font-size:24px;
+      animation:floatUp 4s linear forwards;
+      user-select:none;
+    }
+    @keyframes floatUp {
+      0%{transform:translateY(0) scale(1);opacity:1;}
+      100%{transform:translateY(-600px) scale(1.5);opacity:0;}
+    }
+
+    /* Main content */
+    #main-content {
+      display:none;
+      height:100vh;
+      width:100vw;
+      text-align:center;
+      padding:20px;
+      background:linear-gradient(to bottom,#ffe6f0,#fff0f5);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      color:#ff3366;
+    }
+    h1 { font-size:3rem; margin-bottom:20px; animation:fadeIn 2s ease forwards; }
+    p { font-size:1.5rem; max-width:700px; margin-bottom:20px; line-height:1.6; animation:fadeIn 2s ease forwards; animation-delay:1s; }
+    button { margin-top:20px; padding:14px 28px; font-size:1.2rem; background:#ff6699; border:none; border-radius:12px; color:white; cursor:pointer; transition:transform 0.3s; }
+    button:hover { transform:scale(1.1); }
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
+    /* Birthday Cake */
+    .cake { position:relative; margin:30px 0; width:200px; }
+    .candle { position:absolute; top:-40px; left:50%; transform:translateX(-50%); width:10px; height:40px; background:#FFD700; border-radius:2px; }
+    .flame { position:absolute; top:-15px; left:50%; transform:translateX(-50%); width:12px; height:15px; background:radial-gradient(circle at 50% 50%, #ffdd00, #ff3300); border-radius:50%; animation:flicker 0.5s infinite alternate; }
+    @keyframes flicker { 0% { transform: translateX(-50%) scale(1); opacity:1; } 100% { transform: translateX(-50%) scale(1.2); opacity:0.8; } }
+    .layer { width:200px; height:40px; margin:0 auto; border-radius:10px; }
+    .layer1 { background:#ff6699; }
+    .layer2 { background:#ff99cc; margin-top:5px; }
+    .layer3 { background:#ffcce6; margin-top:5px; }
+    .cake-base { width:220px; height:20px; background:#d2691e; margin:0 auto; border-radius:5px; margin-top:5px; }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay with hearts/flowers -->
+  <div id="overlay">
+    <h2 style="font-size:2.5rem; color:#ff3366;">Happy Birthday, Sharon! 🎉</h2>
+    <p style="margin-top:10px; font-size:1.5rem; color:#ff6699;">Here comes a shower of love just for you ❤️🌸</p>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <h1>Happy Birthday, Sharon! ❤️</h1>
+
+    <!-- Birthday Cake -->
+    <div class="cake">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="layer layer1"></div>
+      <div class="layer layer2"></div>
+      <div class="layer layer3"></div>
+      <div class="cake-base"></div>
+    </div>
+
+    <p>
+      Sharon, on your special day, I want to tell you just how much you mean to me. Every smile of yours lights up my world,
+      every laugh fills my heart with joy, and every moment with you feels like a beautiful dream. You are my best friend,
+      my inspiration, and my everything. 💖
+    </p>
+    <p>
+      I hope today brings you endless happiness, laughter, and all the love you deserve. May all your wishes come true, and may
+      we create countless more beautiful memories together. You are the most amazing person I have ever known, and I feel so
+      lucky to have you in my life. 🌹
+    </p>
+    <p>
+      So, here’s to you, Sharon — my love, my heart, and my forever. Happy Birthday, my darling! I love you more than words
+      could ever express. ❤️🎂💐
+    </p>
+    <button onclick="alert('💖 Love you forever, Sharon! 💖')">Send Love</button>
+  </div>
+
+  <script>
+    // Floating hearts/flowers
+    function createParticle() {
+      const overlay = document.getElementById('overlay');
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = Math.random() * window.innerWidth + 'px';
+      particle.style.fontSize = 20 + Math.random() * 30 + 'px';
+      particle.innerHTML = Math.random() > 0.5 ? '❤️' : '🌸';
+      overlay.appendChild(particle);
+      setTimeout(() => particle.remove(), 4000);
+    }
+    const particleInterval = setInterval(createParticle, 300);
+
+    // Show main content after 5 seconds
+    setTimeout(() => {
+      clearInterval(particleInterval);
+      document.getElementById('overlay').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('main-content').style.display = 'flex';
+      }, 1000);
+    }, 5000);
+  </script>
+
+</body>
+</html>
